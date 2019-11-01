@@ -63,7 +63,7 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
     for (var key in received_data) {
         if (key == "CHECKSUMHASH") {
             paytmChecksum = received_data[key];
-        } else {
+        } else if(key !== 'event' && key!=='id') {
             paytmParams[key] = received_data[key];
         }
     }
