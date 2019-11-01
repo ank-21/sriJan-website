@@ -37,7 +37,7 @@ router.get('/event/list',(req,res)=>{
                 fee=100;
             }
             else{
-                fee=2;
+                fee=300;
             }
             const list = {
                 ...docs._doc,
