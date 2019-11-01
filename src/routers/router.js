@@ -9,9 +9,8 @@ var paytm_config = require('../paytm/paytm_config').paytm_config;
 router.post('/event', (req,res)=>{
     const event = new Event(req.body);
     try {
-        console.log(req.body);
         event.save((err,data)=>{
-            console.log(data);
+            console.log('data',data);
             if(!err){
                 res.redirect('event/list?id=' + data._id)
             }else{
@@ -30,7 +29,8 @@ router.post('/event', (req,res)=>{
 router.get('/event/list',(req,res)=>{
     let id = req.query.id;
     Event.findOne({_id:id},(err,docs)=>{
-        console.log(docs._doc);
+        console.log('1st',docs)
+        console.log("2nd",docs._doc);
         if(!err){
             let fee = 0;
             if(docs._doc.events.indexOf('IPL Auction') > -1 || docs._doc.events.indexOf('Business Quiz Competition') > -1){
@@ -45,7 +45,6 @@ router.get('/event/list',(req,res)=>{
                 CUSTID : 'CUST'+Date.now(),
                 MID : paytm_config.MID,
                 fee
-
             };
             console.log('LIST', list);
             res.render("eventList",{  //its a view page 
