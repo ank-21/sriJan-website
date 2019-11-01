@@ -38,11 +38,20 @@ PaytmRouter.post('/generate_checksum',(req,res)=>{
 
 })
 
-PaytmRouter.post("/cb",(req,res)=>{    
+PaytmRouter.post("/cb/workshop/:id",(req,res)=>{   
     res.render('cb',{
-    list:req.body
+        list:req.body,
+        id: req.params.id,
+        event: 'false'
+    })    
 })
-    
+
+PaytmRouter.post("/cb/event/:id",(req,res)=>{   
+    res.render('cb',{
+        list:req.body,
+        id: req.params.id,
+        event: 'true'
+    })    
 })
 
 PaytmRouter.post('/verify_checksum',(req,res)=>{
@@ -64,16 +73,16 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
             if(!err){
                 StartInput.findOne({ORDER_ID:data.ORDERID},(err,docs)=>{
                     if(!err&&docs.TXN_AMOUNT==data.TXNAMOUNT){
-                        if(data.TXNAMOUNT===1000){
-                            if(Event.updateTransactionId(docs.EMAIL, data.BANKTXNID)){
+                        if(req.body.event==='true'){
+                            if(Event.updateTransactionId(req.body.id, data.BANKTXNID)){
                                 res.render('success',{
                                     doc:data
                                 });
                             }
                         
                         }
-                        else if(data.TXNAMOUNT===350){
-                            if(Workshop.updateTransactionId(docs.EMAIL, data.BANKTXNID)){
+                        else if(req.body.event==='false'){
+                            if(Workshop.updateTransactionId(req.body.id, data.BANKTXNID)){
                                 res.render('success',{
                                     doc:data
                                 });

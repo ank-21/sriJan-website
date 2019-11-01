@@ -26,16 +26,9 @@ const workshopSchema = new mongoose.Schema({
 
 workshopSchema.statics.updateTransactionId=function(mailId,transactionID){
     if(transactionID){
-        return Workshop.findOne({mailId}, (err, workshop)=>{
-            console.log('MAIL ID', workshop);
+        return Workshop.findByIdAndUpdate(Id, { $set: { 'transactionID' : transactionID } } , (err, workshop)=>{
             if(!err){
-                workshop.transactionID=transactionID;
-                workshop.save((err, data)=>{
-                    if(!err){
-                        return true;
-                    }
-                    return false;
-                })
+                return workshop;
             }
         })
     }

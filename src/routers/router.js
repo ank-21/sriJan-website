@@ -37,7 +37,7 @@ router.get('/event/list',(req,res)=>{
                 fee=100;
             }
             else{
-                fee=300;
+                fee=2;
             }
             const list = {
                 ...docs._doc,
@@ -99,7 +99,8 @@ router.get('/workshop/list',(req,res)=>{
 router.post('/checkWorkshop',(req,res)=> {
     console.log(req.body);
     res.render('paytm',{
-        docs:req.body
+        docs:req.body,
+        cb: `http://13.235.80.162/paytmPath/cb/workshop/${req.body.id}`
     })
     
 })
@@ -107,7 +108,8 @@ router.post('/checkWorkshop',(req,res)=> {
 router.post('/checkEvent',(req,res)=> {
     console.log(req.body);
     res.render('paytm',{
-        docs:req.body
+        docs:req.body,
+        cb: `http://13.235.80.162/paytmPath/cb/event/${req.body.id}`
     })
     
 })

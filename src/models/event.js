@@ -63,16 +63,11 @@ const eventSchema = new mongoose.Schema({
     }
 });
 
-eventSchema.statics.updateTransactionId=function(mailId,transactionID){
+eventSchema.statics.updateTransactionId=function(Id,transactionID){
     if(transactionID){
-        return Event.findOne({mailId}, (err, event)=>{
+        return Event.findByIdAndUpdate(Id, { $set: { 'transactionID' : transactionID } } , (err, event)=>{
             if(!err){
-                event.transactionID=transactionID;
-                event.save((err, data)=>{
-                    if(!err){
-                        return data;
-                    }
-                })
+                return event;
             }
         })
     }
