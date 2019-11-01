@@ -55,6 +55,8 @@ PaytmRouter.post("/cb/event/:id",(req,res)=>{
 })
 
 PaytmRouter.post('/verify_checksum',(req,res)=>{
+    console.log('verify_checksum', req.body);
+    
     var paytmChecksum = "";
     var paytmParams = {};
     let received_data = req.body;
