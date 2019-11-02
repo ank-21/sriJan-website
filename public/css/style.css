@@ -1106,6 +1106,14 @@ input:focus::placeholder{
     text-align: center;
   }
 }
+@media only screen and (min-width: 992px) {
+ .change1{
+   margin-left: 16vh;
+ }
+ .change2{
+  margin-right: 10vh;
+}
+}
 
 @media only screen and (max-width: 767px) {
   .home-content h1 {

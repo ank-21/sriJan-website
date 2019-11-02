@@ -61,10 +61,19 @@
 					<h3 class="title"><span>Total Members : </span> <span style="color: #dd0a37;">{{list.teamNumber}}</span></h3>
 					<h3 class="title"><span>Team Members Name : </span> <span style="color: #dd0a37;">{{list.teamMembersName}}</span></h3>
 					<h3 class="title"><span>Events : </span> <span style="color: #dd0a37;">{{list.events}}</span></h3>
+					 {{#if list.transport}}
 					<h3 class="title"><span>Mode of Transport : </span> <span style="color: #dd0a37;">{{list.transport}}</span></h3>
+					{{/if}}
+					{{#if list.arrivalDate}}
 					<h3 class="title"><span>Date of Arrival : </span> <span style="color: #dd0a37;">{{list.arrivalDate}}</span></h3>
+					{{/if}}
+					{{#if list.departureDate}}
 					<h3 class="title"><span>Date of Departure : </span> <span style="color: #dd0a37;">{{list.departureDate}}<span></h3>
+					{{/if}}
+					{{#if list.transportDetails}}
 					<h3 class="title"><span>Transport Details : </span> <span style="color: #dd0a37;">{{list.transportDetails}}</span></h3>
+					{{/if}}
+					{{#if list.accomodation}}
 					<h3 class="title"><span>Accomodation : </span>
 					 {{#if list.accomodation}}
 					 	<span style="color: #dd0a37;">Yes</span>
@@ -72,6 +81,7 @@
 					 	<span style="color: #dd0a37;">No</span>
 						 {{/if}}
 					 </h3>
+					 {{/if}}
 					<h3 class="title"><span>Event Fees : </span> <span style="color: #dd0a37;">Rs {{list.fee}} (Not Paid)</span></h3>
 					<div style="text-align: center;margin-top:4vh">
 						<p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p>

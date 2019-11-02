@@ -39,20 +39,16 @@ const eventSchema = new mongoose.Schema({
         }
     ],
     transport: {
-        type:String,
-        required:true
+        type:String
     },
     arrivalDate: {
-        type: String,
-        required:true
+        type: String
     },
     departureDate: {
-        type:String,
-        required:true
+        type:String
     },
     transportDetails:{
-        type:String,
-        required:true
+        type:String
     },
     accomodation:{
         type:Boolean
