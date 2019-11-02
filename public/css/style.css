@@ -1108,10 +1108,10 @@ input:focus::placeholder{
 }
 @media only screen and (min-width: 992px) {
  .change1{
-   margin-left: 16vh;
+   margin-left: 10vh;
  }
  .change2{
-  margin-right: 10vh;
+  margin-right: 6vh;
 }
 }
 
