@@ -55,18 +55,22 @@ PaytmRouter.post("/cb/event/:id",(req,res)=>{
 })
 
 PaytmRouter.post('/verify_checksum',(req,res)=>{
-    console.log('verify_checksum', req.body);
+    
     
     var paytmChecksum = "";
     var paytmParams = {};
     let received_data = {...req.body};
     for (var key in received_data) {
-        if (key == "CHECKSUMHASH") {
+        if (key==='CHECKSUMHASH') {
             paytmChecksum = received_data[key];
-        } else if(key!='event' && key!='id') {
+        } else if(key!=='event' && key!=='id') {
             paytmParams[key] = received_data[key];
         }
     }
+    console.log('verify_checksum', received_data);
+    console.log('paytmChecksum', paytmChecksum);
+    console.log('paytmParams', paytmParams);
+    
     var isValidChecksum = paytm_checksum.verifychecksum(paytmParams, paytm_config.MERCHANT_KEY, paytmChecksum);
     if(isValidChecksum) {
         const cbInput = new CbInput(req.body);
