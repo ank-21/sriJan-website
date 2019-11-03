@@ -87,6 +87,11 @@ ul, ol {
   list-style: none
 }
 
+#form_background-image{
+  background-image:url(../img/2.jpg);
+  filter: blur(10px) brightness(85%);
+}
+
 .main-btn {
   display: inline-block;
   padding: 14px 50px;
@@ -956,6 +961,16 @@ changes */
 .copyright {
   height: 50px;
   line-height: 50px;
+}
+
+#contact-form textarea{
+  padding: 10px;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+
+#contact-form h3{
+  color: #fff;
 }
 
 .contact-social {
