@@ -72,7 +72,7 @@ PaytmRouter.post('/verify_checksum',(req,res)=>{
     console.log('paytmParams', paytmParams);
     
     var isValidChecksum = paytm_checksum.verifychecksum(paytmParams, paytm_config.MERCHANT_KEY, paytmChecksum);
-    if(isValidChecksum) {
+    if(isValidChecksum || (received_data.PAYMENTMODE==='UPI' && received_data.RESPCODE=='01')) {
         const cbInput = new CbInput(req.body);
         cbInput.save((err,data)=>{
             console.log(data)
