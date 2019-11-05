@@ -17,10 +17,6 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
 
-	<!-- Owl Carousel -->
-	<link type="text/css" rel="stylesheet" href="/css/owl.carousel.css" />
-	<link type="text/css" rel="stylesheet" href="/css/owl.theme.default.css" />
-
 	<!-- Font Awesome Icon -->
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 
@@ -48,6 +44,11 @@
 			.drop-shadow > table{
 				margin-top: 2%;
 			}
+			.teamInfo{
+				color: #8f001e;
+				font-size: 1.5em;
+				letter-spacing: 2px;
+			}
 		</style>
 </head>
 <body>
@@ -67,9 +68,9 @@
 			</div>
 		</div>
 
-		
+		<div class="text-center teamInfo"><span><span id="numTeam">0</span> teams found</span></div>
 
-		<table class="table table-stripped">
+		<table class="table table-stripped table-hover">
     <thead>
       <tr>
         <th>Team Name</th>
@@ -113,12 +114,8 @@
 
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/jquery.waypoints.min.js"></script>
-	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/jquery.stellar.min.js"></script>
-	<script src="/js/jquery.countTo.js"></script>
   <script src="/js/main.js"></script>
-	<script src="/js/handlebars-v4.4.3.js"></script>
   <script src = "/js/loader.js"></script>
   <script>
 
@@ -135,7 +132,7 @@
 			
     });
 		function viewList(){
-
+			let count=0;
 			const html = dataArr.map((data)=>{
 				const dropDownValue = $('#eventSelect').val();
 
@@ -143,15 +140,18 @@
 
 					if($('input[name=fee_paid]:checked').length > 0){
 						if(data.transactionID){
+							count++;
 							return templateList(data)
 						}
 					}
 					else{
+						count++;
 						return templateList(data);
 					}
 				}
 
 			});
+			$('#numTeam').text(count);
 			$('#tbody').html(html);
 		}
 		function templateList(data){
