@@ -205,24 +205,24 @@
 			return(`
 				<div>
 					<h6>Arrival Date: </h6>
-					${data.arrivalDate}
+					${data.arrivalDate || '-'}
 				</div>
 				<div>
 					<h6>Departure Date: </h6>
-					${data.departureDate}
+					${data.departureDate || '-'}
 				</div>
 				<div>
 					<h6>Transport Details </h6><br>
-					${data.transport}<br>
-					${data.transportDetails}
+					${data.transport || '-'}<br>
+					${data.transportDetails || '-'}
 				</div>
 				<div>
 					<h6>Team Memebers: </h6>
-					${data.teamNumber}
+					${data.teamNumber || '-'}
 				</div>
 				<div>
 					<h6>Members Name: </h6>
-					${data.teamMembersName}
+					${data.teamMembersName || '-'}
 				</div>
 			`);
 		}
