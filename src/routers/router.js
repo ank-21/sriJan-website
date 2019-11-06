@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 var paytm_config = require('../paytm/paytm_config').paytm_config;
 
 router.post('/event', (req,res)=>{
+    res.status(400).send();
+    return 0;
     const event = new Event(req.body);
     try {
         event.save((err,data)=>{
@@ -27,6 +29,8 @@ router.post('/event', (req,res)=>{
 
 
 router.get('/event/list',(req,res)=>{
+    res.status(400).send();
+    return 0;
     let id = req.query.id;
     Event.findOne({_id:id},(err,docs)=>{
         console.log('1st',docs)
@@ -58,6 +62,8 @@ router.get('/event/list',(req,res)=>{
 
 
 router.post('/workshop',(req,res)=> {
+    res.status(400).send();
+    return 0;
     const workshop = new Workshop(req.body);
     try {
         console.log(req.body);
@@ -76,6 +82,8 @@ router.post('/workshop',(req,res)=> {
 })
 
 router.get('/workshop/list',(req,res)=>{
+    res.status(400).send();
+    return 0;
     let id = req.query.id;
     Workshop.findOne({_id:id},(err,docs)=>{
         if(!err){
