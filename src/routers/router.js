@@ -140,7 +140,7 @@ router.get('/error',(req,res)=>{
     })
 })
 
-router.get('/view/events', (req, res)=> {
+router.get('/views/fetchEvents', (req, res)=> {
     Event.find((err, data)=>{
         res.render('displayrecords', {
             event: true,
@@ -151,7 +151,7 @@ router.get('/view/events', (req, res)=> {
 });
 
 
-router.get('/view/workshops', (req, res)=> {
+router.get('/views/fetchWorkshops', (req, res)=> {
     Workshop.find((err, data)=>{
         res.render('displayrecords', {
             event: false,
