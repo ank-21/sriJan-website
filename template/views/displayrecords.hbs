@@ -93,7 +93,11 @@
 		</div>		
 		<div class="text-center teamInfo"><span><span id="numTeam">0</span> teams found</span></div>
 		<div>
-			<a href="" id="printPDF" target="_blank" style="color: #000;">Print Document</a>
+			{{#if event}}
+				<a href="" id="printPDF" target="_blank" style="color: #000;">Print Document</a>
+			{{else}}
+				<a href="/register/views/pdf/workshop" target="_blank" style="color: #000;">Print Document</a>
+			{{/if}}
 		</div>
 
 		<table class="table table-stripped table-hover">
