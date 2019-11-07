@@ -13,9 +13,9 @@ var content = fs.readFileSync(path.join(__dirname, "./mail.html"), 'utf-8');
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-  service: 'godaddy',
+  service: 'gmail',
   auth: {
-    user: 'support@srijan-nits.com',
+    user: 'srijannits@gmail.com',
     pass: 'srijan_nits1'
   }
 });
@@ -34,7 +34,7 @@ Event.find({ transactionID: {$ne: null}, events: "Pitching Competition", mailEve
       });
 
       const mailOptions = {
-        from: 'support@srijan-nits.com',
+        from: 'srijannits@gmail.com',
         to: event.mailId,
         subject: 'Invitation for SRIJAN NIT Silchar',        
         html: output
