@@ -56,6 +56,10 @@ const eventSchema = new mongoose.Schema({
     transactionID:{
         type: String,
         default: null
+    },
+    mailEvent:{
+        type: Boolean,
+        default: false
     }
 });
 
