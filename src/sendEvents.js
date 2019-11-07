@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 
-Event.find({ transactionID: {$ne: null}, events: "Pitching Competition"}, (err, events)=>{
+Event.find({ transactionID: {$ne: null}, events: "Pitching Competition", mailEvent: {$ne: true} }, (err, events)=>{
   let c=0;
   events.forEach(event => {
     if(event.mailId !== "paulbiswajit47@gmail.com"){
