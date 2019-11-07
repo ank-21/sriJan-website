@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 Event.find({ transactionID: {$ne: null}, events: "Pitching Competition"}, (err, events)=>{
   let c=0;
   events.forEach(event => {
-    if(event.mailId === "paulbiswajit47@gmail.com"){
+    if(event.mailId !== "paulbiswajit47@gmail.com"){
       const output = mustache.render(content, {
         events: event.events.join(),
         transactionID:event.transactionID,
@@ -35,8 +35,8 @@ Event.find({ transactionID: {$ne: null}, events: "Pitching Competition"}, (err, 
 
       const mailOptions = {
         from: 'support@srijan-nits.com',
-        to: 'singhshivam242@gmail.com',
-        subject: 'Invitation for SRiJAN NIT Silchar',        
+        to: event.mailId,
+        subject: 'Invitation for SRIJAN NIT Silchar',        
         html: output
       };
       
