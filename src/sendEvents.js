@@ -21,38 +21,39 @@ const transporter = nodemailer.createTransport({
 });
 
 
-Event.find({ transactionID: {$ne: null}, events: "Pitching Competition", mailEvent: {$ne: true} }, (err, events)=>{
+Event.find({ mailId: {$ne: "paulbiswajit47@gmail.com"}, transactionID: {$ne: null}, events: {$in: ["Business Quiz Competition", "IPL Auction"]}, mailEvent: {$ne: true} }, (err, events)=>{
   let c=0;
-  events.forEach(event => {
-    if(event.mailId !== "paulbiswajit47@gmail.com"){
-      const output = mustache.render(content, {
-        events: event.events.join(),
-        transactionID:event.transactionID,
-        collegeName: event.collegeName,
-        teamMembersName: event.teamMembersName,
-        teamName: event.teamName
-      });
+  console.log(events.length)
+  // events.forEach(event => {
+  //   if(event.mailId !== "paulbiswajit47@gmail.com"){
+  //     const output = mustache.render(content, {
+  //       events: event.events.join(),
+  //       transactionID:event.transactionID,
+  //       collegeName: event.collegeName,
+  //       teamMembersName: event.teamMembersName,
+  //       teamName: event.teamName
+  //     });
 
-      const mailOptions = {
-        from: 'srijannits@gmail.com',
-        to: event.mailId,
-        subject: 'Invitation for SRIJAN NIT Silchar',        
-        html: output
-      };
+  //     const mailOptions = {
+  //       from: 'srijannits@gmail.com',
+  //       to: event.mailId,
+  //       subject: 'Invitation for SRIJAN NIT Silchar',        
+  //       html: output
+  //     };
       
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log('ERROR Send Mail', error);
-        } else {
-          console.log('Email sent: ' + event.mailId + '  ' + info.response);
-          event.mailEvent=true;
-          c+=1;
-          console.log(''+c+ ' MAILS SENT...');
-          event.save((err,event)=>{
-            //console.log('Saved: ' + event.mailId);
-          });
-        }
-      });
-    }
-  });
+  //     transporter.sendMail(mailOptions, function(error, info){
+  //       if (error) {
+  //         console.log('ERROR Send Mail', error);
+  //       } else {
+  //         console.log('Email sent: ' + event.mailId + '  ' + info.response);
+  //         event.mailEvent=true;
+  //         c+=1;
+  //         console.log(''+c+ ' MAILS SENT...');
+  //         event.save((err,event)=>{
+  //           //console.log('Saved: ' + event.mailId);
+  //         });
+  //       }
+  //     });
+  //   }
+  // });
 });
