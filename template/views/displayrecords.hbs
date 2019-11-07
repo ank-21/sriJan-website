@@ -56,6 +56,12 @@
 					display: inline;
 					margin-right: 5px;
 				}
+			.teamInfoLink{
+				color: #000;
+				
+			}
+			.teamInfoLink:hover{
+				color: #000;
 			}
 		</style>
 </head>
@@ -75,7 +81,16 @@
 				</select>
 			</div>
 		</div>
-
+		<div class="text-center teamInfo">
+			<span>
+				Switch To 
+				{{#if event}}
+					<a href="/register/views/fetchWorkshops" class="teamInfoLink">Workshop</a>
+				{{else}}
+					<a href="/register/views/fetchEvents" class="teamInfoLink">Events</a>
+				{{/if}}
+			</span>
+		</div>		
 		<div class="text-center teamInfo"><span><span id="numTeam">0</span> teams found</span></div>
 
 		<table class="table table-stripped table-hover">
