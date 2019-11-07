@@ -215,13 +215,8 @@
 				}).join('')) || 'Workshop'}
 				</ul></td>
 			<td>
-			{{#if ${data.mailEvent}}}
-			Yes
-			{{else}}
-			<span style="color:#dd0a37;">
-				No
-			</span>
-			{{/if}}
+			
+			${(data.mailEvent && 'Yes') || (!data.mailEvent && '<span style="color:#dd0a37;">No</span>') }
 			</td>
 			</tr>`);
 		}
