@@ -21,7 +21,11 @@ const workshopSchema = new mongoose.Schema({
     transactionID:{
         type: String,
         default: null
-    }  
+    },
+    mailWorkshop:{
+        type: Boolean,
+        default: false
+    }
 });
 
 workshopSchema.statics.updateTransactionId=function(Id,transactionID){

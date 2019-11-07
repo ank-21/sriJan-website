@@ -1,4 +1,4 @@
-const Event = require('./models/event');
+const Workshop = require('./models/workshop');
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/Register',{
@@ -21,22 +21,21 @@ const transporter = nodemailer.createTransport({
 });
 
 
-Event.find({ mailId: {$ne: "paulbiswajit47@gmail.com"}, transactionID: {$ne: null}, events: {$in: ["Business Quiz Competition", "IPL Auction"]}, mailEvent: {$ne: true} }, (err, events)=>{
+Workshop.find( {transactionID : {$ne: null}, mailWorkshop: {$ne: true} }, (err, workshops)=>{
   let c=0;
-  console.log(events.length)
-  // events.forEach(event => {
-  //   if(event.mailId !== "paulbiswajit47@gmail.com"){
+  console.log(workshops.length)
+  // workshops.forEach(workshop => {
+  //   
   //     const output = mustache.render(content, {
-  //       events: event.events.join(),
-  //       transactionID:event.transactionID,
-  //       collegeName: event.collegeName,
-  //       teamMembersName: event.teamMembersName,
-  //       teamName: event.teamName
+  //       events: 'Stock Market Workshop',
+  //       transactionID:workshop.transactionID,
+  //       collegeName: workshop.collegeName,
+  //       name: workshop.name
   //     });
 
   //     const mailOptions = {
   //       from: 'srijannits@gmail.com',
-  //       to: event.mailId,
+  //       to: workshop.mailId,
   //       subject: 'Invitation for SRIJAN NIT Silchar',        
   //       html: output
   //     };
@@ -45,15 +44,15 @@ Event.find({ mailId: {$ne: "paulbiswajit47@gmail.com"}, transactionID: {$ne: nul
   //       if (error) {
   //         console.log('ERROR Send Mail', error);
   //       } else {
-  //         console.log('Email sent: ' + event.mailId + '  ' + info.response);
-  //         event.mailEvent=true;
+  //         console.log('Email sent: ' + workshop.mailId + '  ' + info.response);
+  //         workshop.mailWorkshop=true;
   //         c+=1;
   //         console.log(''+c+ ' MAILS SENT...');
-  //         event.save((err,event)=>{
-  //           //console.log('Saved: ' + event.mailId);
+  //         workshop.save((err,workshop)=>{
+  //           //console.log('Saved: ' + workshop.mailId);
   //         });
   //       }
   //     });
-  //   }
+  //   
   // });
 });
