@@ -102,6 +102,7 @@
         <th>Fee Paid</th>
         <th>College Name</th>
 				<th>Events/Workshops</th>
+				<th>Mail Sent</th>
       </tr>
     </thead>
 			<tbody id="tbody">
@@ -213,6 +214,15 @@
 					return `<li>${event}</li>`;
 				}).join('')) || 'Workshop'}
 				</ul></td>
+			<td>
+			{{#if mailEvent}}
+			Yes
+			{{else}}
+			<span style="color:#dd0a37;">
+				No
+			</span>
+			{{/if}}
+			</td>
 			</tr>`);
 		}
 
