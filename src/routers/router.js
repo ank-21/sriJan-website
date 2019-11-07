@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const PDFDocument = require('./pdfTable');
 const Event = require('../models/event');
 const Workshop = require('../models/workshop');
 const mongoose = require('mongoose');
@@ -158,6 +158,47 @@ router.get('/views/fetchWorkshops', (req, res)=> {
             encodedData: encodeURIComponent(JSON.stringify(data)),
             options:['']
         })
+    });
+});
+
+router.get('/views/pdf/:event',(req,res)=>{
+    
+    const table0 = {
+        headers: ["Team Name", "Email ID", "Mobile Number"],
+        rows: []
+    };
+    let c=0;
+
+    Event.find({events: req.params.event, transactionID: {$ne: null}}, (err,events)=>{
+        
+        const doc = new PDFDocument();
+        doc.pipe(res);
+        doc.fontSize(15).font('Helvetica-Bold').text(`List for ${req.params.event} `, {
+            align: 'center'
+        });
+        doc.moveDown();
+        doc.moveDown();
+        events.forEach((event)=>{
+            table0.rows.push([event.teamName, event.mailId, event.mobileNumber]);
+            c+=1;
+            if(c===events.length){
+                doc.table(table0, {
+                    prepareHeader: () => doc.font('Helvetica-Bold'),
+                    prepareRow: (row, i) => doc.font('Helvetica').fontSize(12)
+                });
+                doc.moveDown();
+                doc.end();
+                c=-1;
+            }
+        });
+        if(c===events.length){
+            doc.table(table0, {
+                prepareHeader: () => doc.font('Helvetica-Bold'),
+                prepareRow: (row, i) => doc.font('Helvetica').fontSize(12)
+            });
+            doc.moveDown();
+            doc.end();
+        }
     });
 });
 

@@ -92,6 +92,9 @@
 			</span>
 		</div>		
 		<div class="text-center teamInfo"><span><span id="numTeam">0</span> teams found</span></div>
+		<div>
+			<a href="" id="printPDF" target="_blank" style="color: #000;">Print Document</a>
+		</div>
 
 		<table class="table table-stripped table-hover">
     <thead>
@@ -179,6 +182,13 @@
 			
     });
 		function viewList(){
+			
+			if($('#eventSelect').val()!==""){
+				$('#printPDF').attr("href", `/register/views/pdf/${$('#eventSelect').val()}`);
+			}
+			else{
+				$('#printPDF').attr("href", '');
+			}
 			let count=0;
 			const html = dataArr.map((data, index)=>{
 				const dropDownValue = $('#eventSelect').val();
