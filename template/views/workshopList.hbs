@@ -63,7 +63,7 @@
 					<h3 class="title"><span>Workshop Fees : </span> <span style="color: #dd0a37;">Rs 100 (Not Paid)</span></h3>
 
                     <div style="text-align: center;margin-top:4vh">
-						<p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p>
+						{{!-- <p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p> --}}
 
 						<form action="/register/checkWorkshop" method="post">
             
@@ -77,10 +77,10 @@
 							
 							<input name="EMAIL" value="{{list.mailId}}" hidden>
 							<input name="MOBILE_NO" value="{{list.mobileNumber}}" hidden><br>
-							<input type="submit" value="Proceed to Payment" class="btn btn-primary" style="padding: 1.6% 1.5%; min-width: 26%; font-size: 1.2em;">
+							{{!-- <input type="submit" value="Proceed to Payment" class="btn btn-primary" style="padding: 1.6% 1.5%; min-width: 26%; font-size: 1.2em;"> --}}
 						</form>
-						
-						{{!-- <button type="button" class="btn btn-primary"><a href="./paytm.html" style="text-decoration: none;">Pay With Paytm</a></button> --}}
+
+						<h2>You can Pay later offline</h2>					
 					</div>
 				</div>
 			</div>

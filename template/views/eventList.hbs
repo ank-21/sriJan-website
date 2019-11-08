@@ -84,7 +84,7 @@
 					 {{/if}}
 					<h3 class="title"><span>Event Fees : </span> <span style="color: #dd0a37;">Rs {{list.fee}} (Not Paid)</span></h3>
 					<div style="text-align: center;margin-top:4vh">
-						<p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p>
+						{{!-- <p style="margin-bottom:4vh;font-size:20px">Check the details and click on pay button</p> --}}
 						<form action="/register/checkEvent" method="post">
             
 							<input name="ORDER_ID" value="{{list.ORDERID}}" hidden>
@@ -97,8 +97,9 @@
 							<input name="id" value="{{list._id}}" hidden>
 							<input name="EMAIL" value="{{list.mailId}}" hidden>
 							<input name="MOBILE_NO" value="{{list.mobileNumber}}" hidden><br>
-							<input type="submit" value="Proceed to Payment" class="btn btn-primary" style="padding: 1.6% 1.5%; min-width: 26%; font-size: 1.2em;">
+							{{!-- <input type="submit" value="Proceed to Payment" class="btn btn-primary" style="padding: 1.6% 1.5%; min-width: 26%; font-size: 1.2em;"> --}}
 						</form>
+							<h2>You can Pay offline later</h2>
 					</div>
 					
 				</div>

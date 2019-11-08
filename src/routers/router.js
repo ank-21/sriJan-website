@@ -7,20 +7,24 @@ const mongoose = require('mongoose');
 var paytm_config = require('../paytm/paytm_config').paytm_config;
 
 router.post('/event', (req,res)=>{
-    res.status(400).send();
-    return 0;
     const event = new Event(req.body);
     try {
-        event.save((err,data)=>{
-            console.log('data',data);
-            if(!err){
-                res.redirect('event/list?id=' + data._id)
-            }else{
-                res.render('error',{
-                    errorMsg:'Wrong Input Found'
-                })
-            }
-        });    
+        if(req.body.transactionID==='srijan.nits1.0'){
+            event.transactionID = 'offline'
+            event.save((err,data)=>{
+                console.log('data',data);
+                if(!err){
+                    res.redirect('event/list?id=' + data._id)
+                }else{
+                    res.render('error',{
+                        errorMsg:'Wrong Input Found'
+                    })
+                }
+            });
+        }else{
+            res.send("Authentication Failed");
+        }
+            
     } catch (error) {
         console.log('error during insert operation : ' + error);
     }
@@ -29,8 +33,6 @@ router.post('/event', (req,res)=>{
 
 
 router.get('/event/list',(req,res)=>{
-    res.status(400).send();
-    return 0;
     let id = req.query.id;
     Event.findOne({_id:id},(err,docs)=>{
         console.log('1st',docs)
@@ -62,28 +64,28 @@ router.get('/event/list',(req,res)=>{
 
 
 router.post('/workshop',(req,res)=> {
-    res.status(400).send();
-    return 0;
     const workshop = new Workshop(req.body);
     try {
-        console.log(req.body);
-        workshop.save((err,data)=>{
-            console.log("data : ",data);
-            if(!err){
-                res.redirect('workshop/list?id=' + data._id)
-            }res.render('error',{
-                errorMsg:'Wrong Input Found',
-                errorCode: 0
+        if(req.body.transactionID==='srijan.nits1.0'){
+            workshop.transactionID = 'offline'
+            workshop.save((err,data)=>{
+                console.log("data : ",data);
+                if(!err){
+                    res.redirect('workshop/list?id=' + data._id)
+                }res.render('error',{
+                    errorMsg:'Wrong Input Found',
+                    errorCode: 0
+                })
             })
-        })
+        }else{
+            res.send("Authentication Failed")
+        }  
     } catch (error) {
         console.log('error during insert operation : ' + error);
     }
 })
 
 router.get('/workshop/list',(req,res)=>{
-    res.status(400).send();
-    return 0;
     let id = req.query.id;
     Workshop.findOne({_id:id},(err,docs)=>{
         if(!err){
@@ -102,6 +104,32 @@ router.get('/workshop/list',(req,res)=>{
             res.redirect('error')
         }
     })
+})
+
+router.post('/authWorkshop',(req,res)=> {
+    console.log(req.body);
+    if(req.body.transactionID === 'srijan.nits1.0'){
+        Workshop.findByIdAndUpdate(req.body.id, { $set: { 'transactionID' : 'Verified' } } , (err, workshop)=>{
+            if(!err){
+                res.send("Authentication successful.Now you can pay offline.")
+            }
+        })}
+        else{
+            res.send("Authentication Failed")
+        }   
+})
+
+router.post('/authEvent',(req,res)=> {
+    console.log(req.body);
+    if(req.body.transactionID === 'srijan.nits1.0'){
+        Event.findByIdAndUpdate(req.body.id, { $set: { 'transactionID' : 'Verified' } } , (err, event)=>{
+            if(!err){
+                res.send("Authentication successful.Now you can pay offline.")
+            }
+        })}
+        else{
+            res.send("Authentication Failed")
+        }   
 })
 
 router.post('/checkWorkshop',(req,res)=> {
